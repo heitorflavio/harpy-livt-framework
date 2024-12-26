@@ -38,13 +38,16 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
 
-        $file = lang_path( App::currentLocale() . ".json" );
+        $file = lang_path(App::currentLocale() . ".json");
 
-        return array_merge( parent::share( $request ), [
+        return array_merge(parent::share($request), [
             'csrf' => csrf_token(),
             'locale' => App::currentLocale(),
-            'locales' => config( 'app.available_locales' ),
-            'translations' => File::exists( $file ) ? File::json( $file ) : []
-        ] );
+            'locales' => config('app.available_locales'),
+            'translations' => File::exists($file) ? File::json($file) : [],
+            'auth' => [
+                'user' => $request->user(),
+            ]
+        ]);
     }
 }

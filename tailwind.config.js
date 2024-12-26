@@ -2,7 +2,9 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: 'class',
     content: [
+         "./node_modules/flowbite/**/*.js",
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/**/*.blade.php',
@@ -16,5 +18,5 @@ export default {
             },
         },
     },
-    plugins: [],
+    plugins: [require('flowbite/plugin')],
 };
